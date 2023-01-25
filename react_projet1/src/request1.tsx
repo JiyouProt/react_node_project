@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import ProfileTile from "./profileTile";
 import { ITile } from "./interface/tile.interface";
-import "./App.css";
+import "./profileTile/styles.css";
 
 const instance = axios.create({ baseURL: "http://localhost:3000" });
 
@@ -34,25 +34,24 @@ class Request1 extends React.Component<{}, IStates> {
       });
   }
 
-  
 
-  render() {
-
-    function suppresionTile(): void {
-      throw new Error("Function not implemented.");
+  private deleteTile = (id: any) => { 
+    console.log(id);
+    var data1: ITile[] | undefined;
+    data1 = this.state.data?.splice(id);
+    this.setState({isLoading:false,data:data1}); 
     }
 
+  render() {
     return (
       <div>
         {this.state.isLoading ? (
           <p>Loading...</p>
         ) : (
           <div className="container">
-          <div className="row">
             {this.state.data && this.state.data.map((elt: ITile, index: any) => (
-              <ProfileTile key={index} tile={elt}/>
+              <ProfileTile delete={this.deleteTile} key={index} tile={elt} />
             ))}
-          </div>
           </div>
         )}
       </div>
