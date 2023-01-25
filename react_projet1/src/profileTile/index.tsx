@@ -7,17 +7,18 @@ import croix from "../croix.svg";
 
 interface IProps {
   delete(id: number): void;
-  key: any;
+  key:number;
   tile: ITile;
 }
 
 interface IStates {
+  id : number;
 }
 
 class ProfileTile extends React.Component<IProps, IStates> {
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.state = {id:this.props.key};
   }
   
 
@@ -31,7 +32,7 @@ class ProfileTile extends React.Component<IProps, IStates> {
                     <p className="textCard">completed : {this.props.tile.completed}</p>
                   </div>
               <div className ="card-image">
-                   <img src={croix} className="img" onClick={()=>this.props.delete(this.props.tile.id)}/>
+                   <img src={croix} className="img" onClick={()=>this.props.delete(this.state.id)}/>
               </div>
         </div>
   )

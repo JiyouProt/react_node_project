@@ -3,16 +3,20 @@ import "./App.css";
 import Request1 from "./request1";
 import plus from "./plus.svg"
 
-const App: React.FC = () => {
+
+interface IProps {
+}
+
+const App: React.FC<IProps> = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-
         <Request1 />
+        <div className="test">
+          <img src={plus} className="imgPlus"/>
+      </div>  
       </header>
-      <div className="test">
-           <img src={plus} className="img"/>
-        </div>
+
     </div>
   );
 };

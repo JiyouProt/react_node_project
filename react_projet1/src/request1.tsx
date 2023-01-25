@@ -3,6 +3,8 @@ import axios from "axios";
 import ProfileTile from "./profileTile";
 import { ITile } from "./interface/tile.interface";
 import "./profileTile/styles.css";
+import plus from "./plus.svg"
+
 
 const instance = axios.create({ baseURL: "http://localhost:3000" });
 
@@ -34,13 +36,25 @@ class Request1 extends React.Component<{}, IStates> {
       });
   }
 
+  newTile : ITile = {
+  userId : 300,
+  id : 300,
+  title : "jacob",
+  completed : "true"
+  };
 
-  private deleteTile = (id: any) => { 
-    console.log(id);
-    var data1: ITile[] | undefined;
-    data1 = this.state.data?.splice(id);
-    this.setState({isLoading:false,data:data1}); 
+
+
+  private deleteTile = (id: number) => { 
+    let data = this.state.data!;
+    data.splice(id,1);
+    this.setState({data}); 
     }
+
+    private ajoutTile = () => { 
+      this.state.data?.push(this.newTile);
+      this.setState({data: this.state.data});
+      }; 
 
   render() {
     return (
@@ -48,11 +62,15 @@ class Request1 extends React.Component<{}, IStates> {
         {this.state.isLoading ? (
           <p>Loading...</p>
         ) : (
+
+      //  <div className="test">
+      //     <img src={plus} className="img" onClick={()=>this.ajoutTile}/>
           <div className="container">
-            {this.state.data && this.state.data.map((elt: ITile, index: any) => (
+            {this.state.data && this.state.data.map((elt: ITile, index: number) => (
               <ProfileTile delete={this.deleteTile} key={index} tile={elt} />
             ))}
           </div>
+          // </div> 
         )}
       </div>
     );
