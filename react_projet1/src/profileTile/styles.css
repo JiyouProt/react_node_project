@@ -1,0 +1,16 @@
+.horizontal{
+    border: solid 4px #2018b8;
+    height: 200px;
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+.img{
+    height: 20px;
+    width: 20px;
+}
+
+p
+{
+    font-size: 12px;
+}
